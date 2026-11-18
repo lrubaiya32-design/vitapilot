@@ -1,10 +1,12 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { colors } from "../../constants/colors";
+import { useRouter } from "expo-router";
 
 export default function Medical() {
+  const router = useRouter();
   return (
     <View style={s.c}>
-      <Pressable style={s.btn} onPress={() => alert("Scan comes next")}>
+      <Pressable style={s.btn} onPress={() => router.push("/medical/scan")}>
         <Text style={s.btnText}>Scan prescription</Text>
       </Pressable>
       <Text style={s.h}>Today's doses</Text>
