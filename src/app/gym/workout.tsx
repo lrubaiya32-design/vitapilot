@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { colors } from "../../constants/colors";
-const finish = async () => {
-    const { streak, counted } = await completeWorkoutToday();
-    Alert.alert(
-      "Workout complete",
-      counted
-        ? `${getEncouragement()} Your streak is now ${streak} days.`
-        : `${getEncouragement()} Already counted today. Your streak stays at ${streak} days.`,
-      [{ text: "OK", onPress: () => router.back() }]
-    );
-  };
+import {
+  plans,
+  completeWorkoutToday,
+  bonusLevel,
+  bonusPool,
+  bonusReason,
+} from "../../lib/gymData";
 import type { Exercise, Mode } from "../../types/gym";
 import ExerciseFigure from "../../components/ExerciseFigure";
 import { findByIds } from "../../lib/exerciseLibrary";
@@ -64,12 +61,13 @@ export default function Workout() {
     setExtras([...extras, e]);
   };
 
-  const finish = () => {
-    const newStreak = streakDays + 1;
-    setStreak(newStreak);
+  const finish = async () => {
+    const { streak, counted } = await completeWorkoutToday();
     Alert.alert(
       "Workout complete",
-      `${getEncouragement()} Your streak is now ${newStreak} days.`,
+      counted
+        ? `${getEncouragement()} Your streak is now ${streak} days.`
+        : `${getEncouragement()} Already counted today. Your streak stays at ${streak} days.`,
       [{ text: "OK", onPress: () => router.back() }]
     );
   };
