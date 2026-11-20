@@ -73,7 +73,7 @@ const s = StyleSheet.create({
   btn: {
     backgroundColor: colors.accent,
     padding: 20,
-    borderRadius: 16,
+    borderRadius: 17,
     alignItems: "center",
   },
   btnText: { color: "#fff", fontWeight: "800", fontSize: 18 },
